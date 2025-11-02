@@ -19,21 +19,20 @@ function Register() {
       return;
     }
     console.log("Register submitted:", formData);
-    // Add your API call here
+    // TODO: Add API call for registration
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-black via-slate-900 to-sky-700
-">
-      <div className="bg-white p-8 rounded-2xl shadow-lg w-full max-w-md">
-        <h2 className="text-3xl font-bold text-center text-gray-800 mb-6">
-          Create an Account ✨
+    <div className="min-h-screen flex items-center justify-center bg-gray-100">
+      <div className="bg-white p-8 rounded-xl shadow-md w-full max-w-md">
+        <h2 className="text-2xl font-semibold text-center text-gray-800 mb-6">
+          Create Your Account
         </h2>
 
         <form onSubmit={handleSubmit} className="space-y-5">
           {/* Name */}
           <div>
-            <label className="block text-sm font-medium text-gray-700">
+            <label className="block text-sm font-medium text-gray-700 mb-1">
               Full Name
             </label>
             <input
@@ -43,14 +42,14 @@ function Register() {
               onChange={handleChange}
               required
               placeholder="John Doe"
-              className="mt-1 w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-2 focus:ring-purple-400 focus:outline-none"
+              className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-1 focus:ring-indigo-500 focus:outline-none"
             />
           </div>
 
           {/* Email */}
           <div>
-            <label className="block text-sm font-medium text-gray-700">
-              Email Address
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Email
             </label>
             <input
               type="email"
@@ -59,13 +58,13 @@ function Register() {
               onChange={handleChange}
               required
               placeholder="you@example.com"
-              className="mt-1 w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-2 focus:ring-purple-400 focus:outline-none"
+              className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-1 focus:ring-indigo-500 focus:outline-none"
             />
           </div>
 
           {/* Password */}
           <div>
-            <label className="block text-sm font-medium text-gray-700">
+            <label className="block text-sm font-medium text-gray-700 mb-1">
               Password
             </label>
             <input
@@ -75,13 +74,13 @@ function Register() {
               onChange={handleChange}
               required
               placeholder="••••••••"
-              className="mt-1 w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-2 focus:ring-purple-400 focus:outline-none"
+              className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-1 focus:ring-indigo-500 focus:outline-none"
             />
           </div>
 
           {/* Confirm Password */}
           <div>
-            <label className="block text-sm font-medium text-gray-700">
+            <label className="block text-sm font-medium text-gray-700 mb-1">
               Confirm Password
             </label>
             <input
@@ -91,23 +90,26 @@ function Register() {
               onChange={handleChange}
               required
               placeholder="••••••••"
-              className="mt-1 w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-2 focus:ring-purple-400 focus:outline-none"
+              className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-1 focus:ring-indigo-500 focus:outline-none"
             />
           </div>
 
           {/* Submit Button */}
           <button
             type="submit"
-            className="w-full bg-purple-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-purple-700 transition duration-200"
+            className="w-full bg-indigo-600 text-white py-2 rounded-lg hover:bg-indigo-700 transition"
           >
             Register
           </button>
         </form>
 
-        {/* Footer Links */}
-        <div className="mt-6 text-sm text-center text-gray-600">
+        {/* Footer */}
+        <div className="mt-5 text-sm text-center text-gray-600">
           Already have an account?{" "}
-          <a href="/login" className="text-purple-600 font-semibold hover:underline">
+          <a
+            href="/login"
+            className="text-indigo-600 font-medium hover:underline"
+          >
             Login
           </a>
         </div>

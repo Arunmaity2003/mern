@@ -77,7 +77,7 @@ router.get("/get-all-orders", authenticationToken, async (req, res) => {
 router.put("/update-status/:id", authenticationToken, async (req, res) => {
     try {
         const { id } = req.params;
-        await Order.findByIdAndUpdate(id,{status:req.params.status})
+        await Order.findByIdAndUpdate(id,{status:req.body.status})//
 
         return res.json({
             status:"Success",

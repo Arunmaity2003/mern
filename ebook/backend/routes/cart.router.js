@@ -29,7 +29,7 @@ router.put("/add-to-cart", authenticationToken, async (req, res) => {
     }
 })
 
-// delete from cart
+// remove from cart
 router.put("/remove-from-cart/:bookid", authenticationToken, async (req, res) => {
     try {
         const { bookid } = req.params;

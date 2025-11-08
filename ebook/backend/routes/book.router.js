@@ -90,7 +90,7 @@ router.put("/update-book", authenticationToken, async (req, res) => {
 });
 
 
-//delete router
+//delete book
 router.delete("/delete-book",authenticationToken,async(req,res) => {
     try {
         const {bookid} = req.headers;

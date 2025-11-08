@@ -1,12 +1,16 @@
 const express = require('express')
 const app = express()
 require('dotenv').config()
+const cors = require("cors")
+
 require("./conn/conn.js")
 const user = require("./routes/user.router.js")
 const Books = require("./routes/book.router.js")
 const Faviourite = require("./routes/favourite.router.js")
 const Cart = require("./routes/cart.router.js")
 const Order = require("./routes/order.router.js")
+
+app.use(cors())
 
 app.use(express.json())
 app.get("/",(req,res) => {

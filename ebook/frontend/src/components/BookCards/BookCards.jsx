@@ -2,9 +2,11 @@ import React from 'react'
 import { Link } from "react-router-dom"
 
 const BookCards = ({ data }) => {
-  console.log(data)
+  // console.log(data)
   return (
-    <Link>
+    <Link
+      to={`/view-book-details/${data._id}`}
+    >
       <div className='bg-zinc-800 rounded p-4 h-[70vh]'>
         <div className="bg-zinc-900 rounded flex items-center justify-center">
           <img src={data.url} alt="books" className='h-[45vh] w-full' />

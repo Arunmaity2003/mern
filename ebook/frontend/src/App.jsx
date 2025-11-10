@@ -8,6 +8,7 @@ import LogIn from "./pages/LogIn.jsx"
 import Register from './pages/Register.jsx'
 import Cart from "./pages/Cart.jsx"
 import Profile from "./pages/Profile.jsx"
+import ViewBookDetails from './components/ViewBookDetails/ViewBookDetails.jsx'
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
           <Route path='/Register' element={<Register />} />
           <Route path='/Cart' element={<Cart />} />
           <Route path='/Profile' element={<Profile />} />
+          <Route path='/view-book-details/:id' element={<ViewBookDetails />} />
         </Routes>
         <Footer />
       </Router>

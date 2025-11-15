@@ -7,7 +7,6 @@ const Login = () => {
       <div className="bg-zinc-800 rounded-lg px-8 py-6 w-full md:w-3/6 lg:w-2/6 shadow-lg">
         <p className="text-zinc-200 text-2xl font-semibold text-center">Login</p>
 
-        {/* Email */}
         <div className="mt-6">
           <label htmlFor="email" className="text-zinc-400">
             Email
@@ -22,7 +21,6 @@ const Login = () => {
           />
         </div>
 
-        {/* Password */}
         <div className="mt-4">
           <label htmlFor="password" className="text-zinc-400">
             Password
@@ -37,7 +35,6 @@ const Login = () => {
           />
         </div>
 
-        {/* Login Button */}
         <button
           type="submit"
           className="w-full mt-6 bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 rounded transition"
@@ -45,7 +42,6 @@ const Login = () => {
           Login
         </button>
 
-        {/* Sign Up Link */}
         <div className="flex items-center justify-center gap-2 mt-4 text-zinc-400 text-sm">
           <p>Don't have an account?</p>
           <Link
@@ -56,7 +52,8 @@ const Login = () => {
           </Link>
         </div>
       </div>
-    </div>
+    </div> 
+    
   )
 }
 

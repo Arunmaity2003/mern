@@ -1,9 +1,22 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
 const Register = () => {
+  const [values, setValues] = useState({ username: "", email: "", password: "", address: "" })
+  const change = (e) => {
+    const {name,value} = e.target;
+    setValues({...value,[name]:value})
+  }
+
+  const submit = () => {
+    try {
+      
+    } catch (error) {
+      console.log(error)
+    }
+  }
   return (
-    <div className="h-auto bg-zinc-900 px-12 py-8 flex items-center justify-center">
+    <div className="h-screen bg-zinc-900 px-12 py-8 flex items-center justify-center">
       <div className="bg-zinc-800 rounded-lg px-8 py-5 w-full md:w-3/6 lg:w-2/6">
         <p className="text-zinc-200 text-xl">Sign Up</p>
 
@@ -19,6 +32,8 @@ const Register = () => {
               placeholder="username"
               name="username"
               required
+              value={values.username}
+              onChange={change}
             />
           </div>
         </div>
@@ -34,6 +49,8 @@ const Register = () => {
             placeholder="email"
             name="email"
             required
+            value={values.email}
+            onChange={change}
           />
         </div>
 
@@ -48,6 +65,8 @@ const Register = () => {
             placeholder="password"
             name="password"
             required
+            value={values.password}
+            onChange={change}
           />
         </div>
 
@@ -61,11 +80,13 @@ const Register = () => {
             placeholder="address"
             name="address"
             required
+            value={values.address}
+            onChange={change}
           />
         </div>
 
         <div className="mt-4">
-          <button className='w-full bg-blue-600 text-white font-semibold py-2 rounded hover:bg-blue-500'>Register</button>
+          <button className='w-full bg-blue-600 text-white font-semibold py-2 rounded hover:bg-blue-500 transition-all duration-300' onClick={submit}>Register</button>
         </div>
 
         <p className='flex mt-4 items-center justify-center text-zinc-300 font-semibold'>Or</p>

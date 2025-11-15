@@ -13,19 +13,17 @@ import ViewBookDetails from './components/ViewBookDetails/ViewBookDetails.jsx'
 const App = () => {
   return (
     <>
-      <Router>
-        <Navbar />
-        <Routes>
-          <Route exact path='/' element={<Home />} />
-          <Route path='/all-books' element={<AllBooks />} />
-          <Route path='/LogIn' element={<LogIn />} />
-          <Route path='/Register' element={<Register />} />
-          <Route path='/Cart' element={<Cart />} />
-          <Route path='/Profile' element={<Profile />} />
-          <Route path='/view-book-details/:id' element={<ViewBookDetails />} />
-        </Routes>
-        <Footer />
-      </Router>
+      <Navbar />
+      <Routes>
+        <Route exact path='/' element={<Home />} />
+        <Route path='/all-books' element={<AllBooks />} />
+        <Route path='/LogIn' element={<LogIn />} />
+        <Route path='/Register' element={<Register />} />
+        <Route path='/Cart' element={<Cart />} />
+        <Route path='/Profile' element={<Profile />} />
+        <Route path='/view-book-details/:id' element={<ViewBookDetails />} />
+      </Routes>
+      <Footer />
     </>
   )
 }

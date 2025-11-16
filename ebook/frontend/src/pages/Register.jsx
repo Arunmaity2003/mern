@@ -1,16 +1,31 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import axios from "axios"
 
 const Register = () => {
   const [values, setValues] = useState({ username: "", email: "", password: "", address: "" })
+
+  const navigate = useNavigate()
+
   const change = (e) => {
     const {name,value} = e.target;
-    setValues({...value,[name]:value})
+    setValues({...values,[name]:value})
   }
 
-  const submit = () => {
+  const submit = async () => {
     try {
-      
+      if(
+        values.username === "" ||
+        values.email === "" ||
+        values.password === "" ||
+        values.address === "" 
+      ){
+        alert("All fields are required.")
+      }else{
+        const response = await axios.post("http://localhost:4000/api/v1/sign-up",values)
+        console.log(response.data)
+        navigate("/Login")
+      }
     } catch (error) {
       console.log(error)
     }

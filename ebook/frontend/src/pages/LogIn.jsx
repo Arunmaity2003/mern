@@ -1,7 +1,45 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import { authActions } from "../store/auth.js"
+import axios from "axios"
+import { useDispatch } from "react-redux"
 
 const Login = () => {
+
+  const [values, setValues] = useState({ username: "", password: "" })
+
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+
+  const change = (e) => {
+    const { name, value } = e.target;
+    setValues({ ...values, [name]: value })
+  }
+
+  const submit = async () => {
+    try {
+      if (
+        values.username === "" ||
+        values.password === "" 
+      ) {
+        alert("All fields are required.")
+      } else {
+        const response = await axios.post(
+          "http://localhost:4000/api/v1/sign-in",
+          values
+        )
+        dispatch(authActions.login())
+        dispatch(authActions.changeRole(response.data.role))
+        localStorage.setItem("id",response.data.id)
+        localStorage.setItem("token",response.data.token)
+        localStorage.setItem("role",response.data.role)
+        navigate("/profile")
+      }
+    } catch (error) {
+      alert(error.response.data.message)
+    }
+  }
+
   return (
     <div className="h-screen bg-zinc-900 flex items-center justify-center px-6">
       <div className="bg-zinc-800 rounded-lg px-8 py-6 w-full md:w-3/6 lg:w-2/6 shadow-lg">
@@ -9,15 +47,17 @@ const Login = () => {
 
         <div className="mt-6">
           <label htmlFor="email" className="text-zinc-400">
-            Email
+            username
           </label>
           <input
-            type="email"
-            id="email"
+            type="text"
+            id="username"
             className="w-full mt-2 bg-zinc-900 text-zinc-100 p-2 rounded outline-none focus:ring-1 focus:ring-blue-400"
-            placeholder="Enter your email"
-            name="email"
+            placeholder="Enter your username"
+            name="username"
             required
+            value={values.username}
+            onChange={change}
           />
         </div>
 
@@ -32,12 +72,15 @@ const Login = () => {
             placeholder="Enter your password"
             name="password"
             required
+            value={values.password}
+            onChange={change}
           />
         </div>
 
         <button
           type="submit"
           className="w-full mt-6 bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 rounded transition"
+          onClick={submit}
         >
           Login
         </button>
@@ -52,8 +95,8 @@ const Login = () => {
           </Link>
         </div>
       </div>
-    </div> 
-    
+    </div>
+
   )
 }
 

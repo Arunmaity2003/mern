@@ -8,26 +8,29 @@ const Register = () => {
   const navigate = useNavigate()
 
   const change = (e) => {
-    const {name,value} = e.target;
-    setValues({...values,[name]:value})
+    const { name, value } = e.target;
+    setValues({ ...values, [name]: value })
   }
 
   const submit = async () => {
     try {
-      if(
+      if (
         values.username === "" ||
         values.email === "" ||
         values.password === "" ||
-        values.address === "" 
-      ){
+        values.address === ""
+      ) {
         alert("All fields are required.")
-      }else{
-        const response = await axios.post("http://localhost:4000/api/v1/sign-up",values)
-        console.log(response.data)
+      } else {
+        const response = await axios.post(
+          "http://localhost:4000/api/v1/sign-up",
+          values
+        )
+        alert(response.data.message)
         navigate("/Login")
       }
     } catch (error) {
-      console.log(error)
+      alert(error.response.data.message)
     }
   }
   return (

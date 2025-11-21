@@ -49,11 +49,18 @@ import axios from "axios"
 import Loader from '../Loader/Loader'
 import { useParams } from 'react-router-dom'
 import { GrLanguage } from "react-icons/gr"
+import { FaHeart } from "react-icons/fa";
+import { FaShoppingCart } from "react-icons/fa";
+import { useSelector } from 'react-redux'
 
 const ViewBookDetails = () => {
   const { id } = useParams();
   const [data, setData] = useState();
   const [loading, setLoading] = useState(true);
+
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+  const role = useSelector((state) => state.auth.role);
+  // console.log(isLoggedIn,role)
 
   useEffect(() => {
     const fetch = async () => {
@@ -69,15 +76,22 @@ const ViewBookDetails = () => {
     fetch();
   }, [id]);
 
-  // ⛔️ Prevent accessing data before it's loaded
-  // if (loading) return <Loader />;
-  // if (!data) return <p className="text-white p-10">Book not found</p>;
 
   return (
     <>
       {data && (<div className='px-4 md:px-12 py-8 bg-zinc-900 flex flex-col md:flex-row gap-8'>
-        <div className='bg-zinc-800 rounded p-4 h-[63vh] lg:h-[88vh] w-full lg:w-3/6 flex items-center justify-center'>
-          <img src={data.url} alt={data.title} className='h-[50vh] lg:h-[70vh] rounded' />
+        <div className=' w-full lg:w-3/6 '> {/* h-[63vh] lg:h-[88vh] */}
+          <div className='bg-zinc-800 rounded p-12 flex justify-around '>
+            <img src={data.url} alt={data.title} className='h-[50vh] lg:h-[70vh] rounded' />
+            {isLoggedIn === true && role === "user" && <div className='flex md:flex-col '>
+              <button className='bg-white rounded-full text-3xl p-2 text-red-600'>
+                <FaHeart />
+              </button>
+              <button className='bg-white rounded-full text-3xl p-2 mt-4 text-green-600'>
+                <FaShoppingCart />
+              </button>
+            </div>}
+          </div>
         </div>
         <div className="p-4 w-full lg:w-3/6">
           <h1 className='text-4xl text-zinc-300 font-semibold'>{data.title}</h1>

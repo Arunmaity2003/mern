@@ -10,10 +10,10 @@ router.put("/add-to-faviourite",authenticationToken,async (req,res) => {
         const userData = await User.findById(id)
         const isBookFaviourite = userData.favourites.includes(bookid)
         if(isBookFaviourite){
-            return res.status(200).json({message:"Book is already in faviourite."})
+            return res.status(200).json({message:"Book is already in favourite."})
         }
         await User.findByIdAndUpdate(id,{$push:{favourites:bookid}})
-        return res.status(200).json({message:"Book added to faviourites successfully."})
+        return res.status(200).json({message:"Book added to favourites successfully."})
     } catch (error) {
         res.status(500).json({message:"Error to add in the faviourite"})
     }
@@ -29,7 +29,7 @@ router.put("/delete-from-faviourite",authenticationToken,async (req,res) => {
         if(isBookFaviourite){
             await User.findByIdAndUpdate(id,{$pull:{favourites:bookid}})
         }
-        return res.status(200).json({message:"Book removed from faviourites successfully."})
+        return res.status(200).json({message:"Book removed from favourites successfully."})
     } catch (error) {
         res.status(500).json({message:"Error to delete from faviourite"})
     }

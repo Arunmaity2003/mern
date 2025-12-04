@@ -42,7 +42,7 @@ const Cart = () => {
 
   const PlaceOrder = async () => {
     try {
-      const response = await axios.post(`http://localhost:4000/api/v1/place-order`, {order:cart}, { headers })
+      const response = await axios.post(`http://localhost:4000/api/v1/place-order`, { order: cart }, { headers })
       alert(response.data.message)
       setCart([]);
       navigate("/profile/orderHistory")
@@ -50,6 +50,9 @@ const Cart = () => {
       console.log(error)
     }
   }
+
+
+  
 
   return (
     <div className='bg-zinc-900 p-12 h-screen'>

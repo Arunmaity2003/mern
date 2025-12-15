@@ -7,7 +7,7 @@ const orderSchema = new mongoose.Schema({
     },
     book: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "book"
+        ref: "books"
     },
     status: {
         type: String,

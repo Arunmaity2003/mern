@@ -14,12 +14,12 @@ router.post("/place-order", authenticationToken, async (req, res) => {
             const orderDataFromDb = await newOrder.save()
             //saving order in user model
             await User.findByIdAndUpdate(id, {
-                $push: { order: orderDataFromDb._id }
+                $push: { orders: orderDataFromDb._id } //
             })
 
             //clearing cart
             await User.findByIdAndUpdate(id, {
-                $pull: { cart: orderDataFromDb._id }
+                $pull: { cart: orderData._id }//
             })
         }
         return res.json({

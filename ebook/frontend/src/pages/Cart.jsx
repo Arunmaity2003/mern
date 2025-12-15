@@ -52,11 +52,9 @@ const Cart = () => {
   }
 
 
-  
-
   return (
     <div className='bg-zinc-900 p-12 h-screen'>
-      {!cart && <Loader />}
+      {!cart && <div className='w-full h-full flex justify-center items-center'><Loader /></div>}
       {cart && cart.length === 0 && (
         <div className='h-screen'>
           <div className='h-full flex flex-col items-center justify-center'>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from "axios"
 import Loader from '../Loader/Loader'
-import { useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { GrLanguage } from "react-icons/gr"
 import { FaHeart } from "react-icons/fa";
 import { FaShoppingCart } from "react-icons/fa";
@@ -11,6 +11,7 @@ import { useSelector } from 'react-redux'
 
 const ViewBookDetails = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [data, setData] = useState();
   const [loading, setLoading] = useState(true);
 
@@ -47,6 +48,15 @@ const ViewBookDetails = () => {
     alert(response.data.message)
   }
 
+  const deleteBook = async () => {
+    const response = await axios.delete(
+      "http://localhost:4000/api/v1/delete-book",
+      { headers }
+    )
+    alert(response.data.message)
+    navigate("/all-books")
+  }
+
   return (
     <>
       {data && (
@@ -75,10 +85,15 @@ const ViewBookDetails = () => {
 
               {isLoggedIn === true && role === "admin" &&
                 <div className='flex flex-col md:flex-row lg:flex-col mt-4 lg:mt-0 items-center justify-between lg:justify-start'>
-                  <button className='bg-white rounded lg:rounded-full text-3xl p-3 flex items-center justify-center'>
+                  <Link 
+                  to={`/updateBook/${id}`}
+                  className='bg-white rounded lg:rounded-full text-3xl p-3 flex items-center justify-center'>
                     <FaEdit /><span className='ms-4 block lg:hidden'>Edit</span>
-                  </button>
-                  <button className='bg-white rounded lg:rounded-full text-3xl p-3 mt-8 md:mt-0 lg:mt-8 text-red-600 flex items-center justify-center'>
+                  </Link>
+                  <button
+                    className='bg-white rounded lg:rounded-full text-3xl p-3 mt-8 md:mt-0 lg:mt-8 text-red-600 flex items-center justify-center'
+                    onClick={deleteBook}
+                  >
                     <MdDelete /><span className='ms-4 block lg:hidden'>Delete</span>
                   </button>
                 </div>

@@ -38,16 +38,16 @@ const Sidebar = ({ data }) => {
         </Link>
       </div>)}
       {role === "admin" && (
-        <div className='w-full flex lg:hidden justify-between items-center my-4'>
+        <div className="w-full flex-col items-center justify-center hidden lg:flex">
           <Link
             to="/profile"
-            className="text-zinc-100 font-semibold w-full mt-2 text-center hover:bg-zinc-900 rounded transition-all duration-300"
+            className="text-zinc-100 font-semibold w-full py-2 mt-2 text-center hover:bg-zinc-900 rounded transition-all duration-300"
           >
             All Orders
           </Link>
           <Link
             to="/profile/add-book"
-            className="text-zinc-100 font-semibold w-full text-center hover:bg-zinc-900 rounded transition-all duration-300"
+            className="text-zinc-100 font-semibold w-full py-2 text-center hover:bg-zinc-900 rounded transition-all duration-300"
           >
             Add Book
           </Link>
@@ -57,7 +57,8 @@ const Sidebar = ({ data }) => {
         className='bg-zinc-900 w-3/6 lg:full mt-4 lg:mt-0 text-white font-semibold flex items-center justify-center rounded py-2 hover:bg-zinc-600 transition-all duration-300'
         onClick={() => {
           dispatch(authActions.logout());
-          dispatch(authActions.changeRole("user"));
+          // dispatch(authActions.changeRole("user"));
+          dispatch(authActions.changeRole(null));
 
           localStorage.removeItem("id");
           localStorage.removeItem("token");

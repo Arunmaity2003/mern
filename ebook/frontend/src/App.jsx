@@ -14,6 +14,10 @@ import { authActions } from './store/auth.js'
 import Faviourites from './components/Profile/Faviourites.jsx'
 import UserOrderHistory from './components/Profile/UserOrderHistory.jsx'
 import Settings from './components/Profile/Settings.jsx'
+import AllOrders from './pages/AllOrders.jsx'
+import AddBook from './pages/AddBook.jsx'
+import UpdateBook from './pages/UpdateBook.jsx'
+import AboutUs from './pages/AboutUs.jsx'
 
 const App = () => {
   const dispatch = useDispatch()
@@ -30,15 +34,19 @@ const App = () => {
       <Routes>
         <Route exact path='/' element={<Home />} />
         <Route path='/all-books' element={<AllBooks />} />
+        <Route path='/about-us' element={<AboutUs />} />
         <Route path='/LogIn' element={<LogIn />} />
+        <Route path='/updateBook/:id' element={<UpdateBook />} />
         <Route path='/Register' element={<Register />} />
         <Route path='/Cart' element={<Cart />} />
         <Route path='/Profile' element={<Profile />}>
-          <Route index element={<Faviourites />} />
+          {role === "user" ? <Route index element={<Faviourites />} /> : <Route index element={<AllOrders />} />}
           <Route path='/Profile/orderHistory' element={<UserOrderHistory />} />
           <Route path='/Profile/settings' element={<Settings />} />
+          {role === "admin" && <Route path='/Profile/add-book' element={<AddBook />} />}
         </Route>
         <Route path='/view-book-details/:id' element={<ViewBookDetails />} />
+        
       </Routes>
       <Footer />
     </>

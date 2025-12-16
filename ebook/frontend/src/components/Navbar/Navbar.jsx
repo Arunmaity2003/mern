@@ -136,15 +136,17 @@ const Navbar = () => {
     { title: "Home", link: "/" },
     { title: "All Books", link: "/all-books" },
     { title: "Cart", link: "/cart", auth: true },
-    { title: "Profile", link: "/profile", role: "user" },
-    { title: "Admin Profile", link: "/profile", role: "admin" },
+    { title: "Profile", link: "/profile", auth: true, role: "user" },
+    { title: "Admin Profile", link: "/profile", auth: true, role: "admin" },
   ];
+
 
   const filteredLinks = links.filter((item) => {
     if (item.auth && !isLoggedIn) return false;
     if (item.role && item.role !== role) return false;
     return true;
   });
+
 
   return (
     <>
